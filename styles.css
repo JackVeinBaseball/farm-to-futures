@@ -1,0 +1,411 @@
+/* ===========================================================
+   FARM TO FUTURES — design tokens
+   Palette:
+     --paper       #F1EDE2  aged scorecard paper
+     --ink         #1C2B39  navy-charcoal (primary text)
+     --ink-soft    #4A5A68  muted ink (secondary text)
+     --brass       #A9822E  brass accent (primary accent)
+     --scorebook-red #A63D40  red-pencil accent (sparing use)
+     --grass       #43594A  farm-system green
+     --line        #D8D1BE  hairline rule on paper
+     --card        #FBF9F2  slightly lifted card surface
+   Type:
+     display: 'Fraunces'      — headlines, editorial voice
+     body:    'Inter'          — body copy, UI
+     mono:    'IBM Plex Mono'  — dates, tags, grade meters, stat lines
+   =========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --paper: #F1EDE2;
+  --ink: #1C2B39;
+  --ink-soft: #4A5A68;
+  --brass: #A9822E;
+  --scorebook-red: #A63D40;
+  --grass: #43594A;
+  --line: #D8D1BE;
+  --card: #FBF9F2;
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- ticked ledger rule (signature motif) ---------- */
+.ledger-rule {
+  position: relative;
+  height: 1px;
+  background: var(--line);
+  margin: 40px 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--ink-soft) 0px, var(--ink-soft) 1px,
+    transparent 1px, transparent 24px
+  );
+  opacity: 0.35;
+}
+.ledger-rule.heavy {
+  height: 2px;
+  background-color: var(--ink);
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--brass) 0px, var(--brass) 1px,
+    transparent 1px, transparent 24px
+  );
+  opacity: 1;
+}
+
+/* ---------- masthead ---------- */
+header.masthead {
+  border-bottom: 2px solid var(--ink);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.masthead-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 18px 24px 14px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.wordmark .glyph {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--card);
+  background: var(--grass);
+  padding: 3px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+}
+.tagline {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  letter-spacing: 0.03em;
+  margin-top: 2px;
+}
+nav.primary-nav {
+  display: flex;
+  gap: 22px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+}
+nav.primary-nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+nav.primary-nav a:hover,
+nav.primary-nav a.active {
+  color: var(--ink);
+  border-color: var(--brass);
+}
+
+/* ---------- hero ---------- */
+.hero {
+  padding: 56px 0 8px;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--scorebook-red);
+  margin-bottom: 14px;
+  display: block;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.08;
+  margin: 0 0 18px;
+  letter-spacing: -0.01em;
+}
+.hero .dek {
+  font-size: 18px;
+  color: var(--ink-soft);
+  max-width: 640px;
+  margin: 0 0 20px;
+}
+
+/* ---------- category tag ---------- */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 2px;
+  display: inline-block;
+  white-space: nowrap;
+}
+.tag-roster   { background: #E7DCC0; color: var(--brass); border: 1px solid var(--brass); }
+.tag-prospect { background: #DCE4DE; color: var(--grass); border: 1px solid var(--grass); }
+.tag-farm     { background: #F0DBDA; color: var(--scorebook-red); border: 1px solid var(--scorebook-red); }
+.tag-notes    { background: #DDE3EA; color: var(--ink-soft); border: 1px solid var(--ink-soft); }
+
+/* ---------- grade meter (signature element) ----------
+   Borrows the 20-80 scouting scale to signal how deep/technical
+   a post runs, instead of a generic "5 min read" label. */
+.grade-meter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.grade-meter .scale {
+  position: relative;
+  width: 84px;
+  height: 4px;
+  background: var(--line);
+  border-radius: 2px;
+}
+.grade-meter .scale .fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  background: var(--brass);
+  border-radius: 2px;
+}
+.grade-meter .scale .marker {
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 10px;
+  background: var(--ink);
+}
+.grade-meter .label {
+  letter-spacing: 0.02em;
+}
+
+/* ---------- post list ---------- */
+.post-list {
+  padding: 8px 0 40px;
+}
+.post-row {
+  display: grid;
+  grid-template-columns: 96px 1fr auto;
+  gap: 20px;
+  align-items: start;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+}
+.post-row:first-child { padding-top: 0; }
+.post-row .date {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  padding-top: 4px;
+}
+.post-row .meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.post-row h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 23px;
+  margin: 0 0 6px;
+  line-height: 1.25;
+  transition: color 0.15s ease;
+}
+.post-row:hover h2 { color: var(--brass); }
+.post-row p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 15px;
+  max-width: 60ch;
+}
+.post-row .side {
+  padding-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .post-row { grid-template-columns: 1fr; gap: 8px; }
+  .post-row .side { display: none; }
+}
+
+/* ---------- filter bar ---------- */
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 22px 0 0;
+  font-family: var(--font-mono);
+}
+.filter-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  padding: 7px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.filter-btn:hover { border-color: var(--ink); color: var(--ink); }
+.filter-btn.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- article ---------- */
+article.post {
+  padding: 48px 0 60px;
+}
+.post-header .meta {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.post-header .byline {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-top: 18px;
+}
+.post-body {
+  font-size: 18px;
+  line-height: 1.75;
+  max-width: 66ch;
+}
+.post-body p { margin: 0 0 22px; }
+.post-body h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  margin: 40px 0 16px;
+}
+.post-body blockquote {
+  margin: 32px 0;
+  padding: 4px 0 4px 20px;
+  border-left: 3px solid var(--scorebook-red);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--ink);
+}
+.stat-line {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 16px 18px;
+  margin: 28px 0;
+  border-radius: 3px;
+}
+.stat-line .row { display: flex; justify-content: space-between; padding: 3px 0; }
+.stat-line .row + .row { border-top: 1px dashed var(--line); }
+.stat-line .k { color: var(--ink-soft); }
+.stat-line .v { color: var(--ink); font-weight: 600; }
+
+/* ---------- about ---------- */
+.about-body {
+  font-size: 18px;
+  line-height: 1.75;
+  max-width: 66ch;
+  padding: 12px 0 40px;
+}
+.about-body p { margin: 0 0 22px; }
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 32px 0;
+}
+.about-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 18px;
+  border-radius: 3px;
+}
+.about-card .tag { margin-bottom: 10px; }
+.about-card p { font-size: 14px; margin: 0; color: var(--ink-soft); }
+@media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
+
+/* ---------- footer ---------- */
+footer {
+  border-top: 2px solid var(--ink);
+  padding: 32px 0 48px;
+  margin-top: 20px;
+}
+footer .foot-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+footer a { text-decoration: none; }
+footer a:hover { color: var(--brass); }
+
+/* ---------- focus states ---------- */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
